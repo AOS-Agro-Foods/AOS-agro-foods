@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Leaf, Heart, Recycle } from "lucide-react";
+import { fadeUp } from "@/lib/animations";
 
 const pillars = [
   {
@@ -18,15 +19,6 @@ const pillars = [
     desc: "Zero-waste processing goals with by-product utilization and biodegradable packaging initiatives.",
   },
 ];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.15, duration: 0.7, ease: "easeOut" },
-  }),
-};
 
 const SustainabilitySection = () => (
   <section id="sustainability" className="section-padding bg-cream">

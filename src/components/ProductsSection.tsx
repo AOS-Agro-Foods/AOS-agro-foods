@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Wheat, Package, Handshake } from "lucide-react";
+import { fadeUp } from "@/lib/animations";
 
 const products = [
   {
@@ -21,15 +22,6 @@ const products = [
     tags: ["Direct Partnerships", "Fair Trade"],
   },
 ];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.15, duration: 0.7, ease: "easeOut" },
-  }),
-};
 
 const ProductsSection = () => (
   <section id="products" className="section-padding">
@@ -60,7 +52,6 @@ const ProductsSection = () => (
             className="hover-lift group relative overflow-hidden rounded-2xl border border-border bg-card p-8"
             style={{ boxShadow: "var(--shadow-card)" }}
           >
-            {/* Hover gradient overlay */}
             <div className="absolute inset-0 bg-forest-gradient opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
             <div className="relative z-10">
               <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-background/20">

@@ -1,15 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.7, ease: "easeOut" },
-  }),
-};
+import { fadeUp } from "@/lib/animations";
 
 const ContactSection = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -38,7 +30,6 @@ const ContactSection = () => {
         </motion.div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-2">
-          {/* Contact info */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -59,7 +50,7 @@ const ContactSection = () => {
                     {item.label}
                   </p>
                   {item.href ? (
-                    <a href={item.href} className="mt-1 font-body text-base text-foreground transition-colors hover:text-secondary">
+                    <a href={item.href} className="mt-1 block font-body text-base text-foreground transition-colors hover:text-secondary">
                       {item.value}
                     </a>
                   ) : (
@@ -70,7 +61,6 @@ const ContactSection = () => {
             ))}
           </motion.div>
 
-          {/* Form */}
           <motion.form
             onSubmit={handleSubmit}
             initial="hidden"

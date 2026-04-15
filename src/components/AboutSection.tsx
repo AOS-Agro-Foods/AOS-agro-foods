@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ShieldCheck, Wheat, Globe } from "lucide-react";
+import { fadeUp } from "@/lib/animations";
 
 const features = [
   {
@@ -18,15 +19,6 @@ const features = [
     desc: "Export-grade operations meeting CODEX, ISO, and HACCP benchmarks for worldwide distribution.",
   },
 ];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.15, duration: 0.7, ease: "easeOut" },
-  }),
-};
 
 const AboutSection = () => (
   <section id="about" className="section-padding bg-cream">

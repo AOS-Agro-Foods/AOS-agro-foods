@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Sprout, Factory, PackageCheck, Ship } from "lucide-react";
+import { fadeUp } from "@/lib/animations";
 
 const steps = [
   { icon: Sprout, label: "Farm", desc: "Sourced from certified farms" },
@@ -8,18 +9,8 @@ const steps = [
   { icon: Ship, label: "Export", desc: "Global distribution network" },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.2, duration: 0.7, ease: "easeOut" },
-  }),
-};
-
 const SupplyChainSection = () => (
   <section id="supply-chain" className="section-padding bg-forest-gradient relative overflow-hidden">
-    {/* Subtle pattern */}
     <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "40px 40px" }} />
     <div className="relative mx-auto max-w-6xl">
       <motion.div
@@ -40,9 +31,7 @@ const SupplyChainSection = () => (
       </motion.div>
 
       <div className="relative mt-20">
-        {/* Connecting line (desktop) */}
         <div className="absolute left-0 right-0 top-14 hidden h-[2px] bg-background/15 md:block" />
-
         <div className="grid gap-12 md:grid-cols-4 md:gap-6">
           {steps.map((step, i) => (
             <motion.div

@@ -1,20 +1,12 @@
 import { motion } from "framer-motion";
 import { FileText, Download } from "lucide-react";
+import { fadeUp } from "@/lib/animations";
 
 const docs = [
   { title: "FSSAI Certificate", desc: "Food Safety and Standards Authority certification" },
   { title: "Compliance Documents", desc: "Regulatory and export compliance records" },
   { title: "Quality Reports", desc: "Annual quality assurance and audit reports" },
 ];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.7, ease: "easeOut" },
-  }),
-};
 
 const InvestorSection = () => (
   <section id="investors" className="section-padding">
