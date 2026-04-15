@@ -16,9 +16,7 @@ const Footer = () => (
         {/* Logo */}
         <div>
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-background/10">
-              <span className="font-display text-lg font-bold text-gold">A</span>
-            </div>
+            <img src={logo} alt="AOS Agro Foods" className="h-10 w-10 rounded-lg object-contain" />
             <span className="font-display text-xl font-bold tracking-tight text-background">
               AOS Agro Foods
             </span>

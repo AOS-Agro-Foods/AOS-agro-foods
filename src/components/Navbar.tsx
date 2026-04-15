@@ -33,9 +33,7 @@ const Navbar = () => {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         {/* Logo */}
         <a href="#" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-            <span className="font-display text-lg font-bold text-primary-foreground">A</span>
-          </div>
+          <img src={logo} alt="AOS Agro Foods" className="h-10 w-10 rounded-lg object-contain" />
           <div>
             <span className={`font-display text-lg font-bold tracking-tight ${scrolled ? "text-foreground" : "text-background"}`}>
               AOS Agro Foods
