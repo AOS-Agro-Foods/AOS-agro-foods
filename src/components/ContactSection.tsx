@@ -1,15 +1,39 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Send, Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { fadeUp } from "@/lib/animations";
 
 const ContactSection = () => {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setStatus("loading");
+
+    try {
+      const res = await fetch("https://formspree.io/f/xpzgvprk", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        setName("");
+        setEmail("");
+        setMessage("");
+        setTimeout(() => setStatus("idle"), 5000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 4000);
+      }
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   };
 
   return (
@@ -74,6 +98,8 @@ const ContactSection = () => {
               <input
                 type="text"
                 required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 className="w-full rounded-lg border border-border bg-background px-4 py-3 font-body text-sm text-foreground outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20"
                 placeholder="Your full name"
               />
@@ -83,6 +109,8 @@ const ContactSection = () => {
               <input
                 type="email"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full rounded-lg border border-border bg-background px-4 py-3 font-body text-sm text-foreground outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20"
                 placeholder="you@company.com"
               />
@@ -92,6 +120,8 @@ const ContactSection = () => {
               <textarea
                 rows={4}
                 required
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 className="w-full resize-none rounded-lg border border-border bg-background px-4 py-3 font-body text-sm text-foreground outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20"
                 placeholder="Tell us about your requirements..."
               />
@@ -99,13 +129,13 @@ const ContactSection = () => {
             <motion.div variants={fadeUp} custom={3}>
               <button
                 type="submit"
-                className="flex w-full items-center justify-center gap-2 rounded-full bg-primary px-8 py-3.5 font-body text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 hover:shadow-lg"
+                disabled={status === "loading"}
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-primary px-8 py-3.5 font-body text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 hover:shadow-lg disabled:opacity-70"
               >
-                {submitted ? "Sent Successfully!" : (
-                  <>
-                    Submit Inquiry <Send className="h-4 w-4" />
-                  </>
-                )}
+                {status === "loading" && <><Loader2 className="h-4 w-4 animate-spin" /> Sending...</>}
+                {status === "success" && <><CheckCircle className="h-4 w-4" /> Sent Successfully!</>}
+                {status === "error" && <><AlertCircle className="h-4 w-4" /> Failed — Try Again</>}
+                {status === "idle" && <>Submit Inquiry <Send className="h-4 w-4" /></>}
               </button>
             </motion.div>
           </motion.form>
