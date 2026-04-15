@@ -1,3 +1,5 @@
+import logo from "@/assets/logo.jpg";
+
 const links = [
   { label: "About", href: "#about" },
   { label: "Products", href: "#products" },
