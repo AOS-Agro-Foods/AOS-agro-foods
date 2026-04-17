@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
 
-const VIDEO_SRC = "https://videos.pexels.com/video-files/6580892/6580892-hd_1920_1080_30fps.mp4";
+const VIDEO_SRC_HD = "https://videos.pexels.com/video-files/27202595/27202595-hd_1920_1080_30fps.mp4";
+const VIDEO_SRC_SD = "https://videos.pexels.com/video-files/27202595/27202595-hd_1280_720_30fps.mp4";
 
 const HeroSection = () => {
   const [showVideo, setShowVideo] = useState(false);
@@ -36,7 +37,8 @@ const HeroSection = () => {
           className="absolute inset-0 h-full w-full object-cover"
           style={{ zIndex: 0 }}
         >
-          <source src={VIDEO_SRC} type="video/mp4" />
+          <source src={VIDEO_SRC_HD} type="video/mp4" />
+          <source src={VIDEO_SRC_SD} type="video/mp4" />
         </motion.video>
       ) : (
         <motion.img
