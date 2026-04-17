@@ -1,0 +1,4 @@
+<!DOCTYPE html><html><body><pre id="o">probing...</pre>
+<script>
+(async()=>{const u=['uhd_3840_2160_30fps','uhd_2560_1440_30fps','hd_1920_1080_30fps','hd_1280_720_30fps','sd_960_540_30fps','sd_640_360_30fps','sd_640_360_24fps','sd_960_540_24fps','hd_1280_720_24fps','hd_1920_1080_24fps'];const out=[];for(const q of u){try{const r=await fetch(`https://videos.pexels.com/video-files/27202595/27202595-${q}.mp4`,{method:'HEAD'});out.push(`${r.status} ${q}`)}catch(e){out.push(`ERR ${q}`)}}document.getElementById('o').innerText=out.join('\n');document.title='DONE';})();
+</script></body></html>
