@@ -1,19 +1,18 @@
-<!DOCTYPE html><html><body><pre id="o">probing...</pre>
+<!DOCTYPE html><html><body><pre id="o">probing alternates...</pre>
 <script>
 (async()=>{
+  const ids = ['6580892','9136346','9258664','15350685','31914142','3872563','2519660','857194'];
   const out=[];
-  // Try the /download/video endpoint - it usually redirects
-  try {
-    const r = await fetch('https://www.pexels.com/download/video/27202595/', {redirect:'follow'});
-    out.push(`download endpoint: ${r.status} -> ${r.url}`);
-  } catch(e){ out.push('download err: '+e.message); }
-  // Also try playing the video element directly
-  const v = document.createElement('video');
-  v.src = 'https://videos.pexels.com/video-files/27202595/27202595-hd_1920_1080_30fps.mp4';
-  v.muted = true;
-  v.addEventListener('loadedmetadata',()=>{out.push('VIDEO LOADED OK');document.getElementById('o').innerText=out.join('\n');});
-  v.addEventListener('error',(e)=>{out.push('VIDEO ERR code='+(v.error&&v.error.code));document.getElementById('o').innerText=out.join('\n');});
-  document.body.appendChild(v);
-  setTimeout(()=>{document.getElementById('o').innerText=out.join('\n');document.title='DONE';},5000);
+  for (const id of ids) {
+    await new Promise(res=>{
+      const v=document.createElement('video'); v.muted=true; v.preload='metadata';
+      v.src=`https://videos.pexels.com/video-files/${id}/${id}-hd_1920_1080_30fps.mp4`;
+      const t=setTimeout(()=>{out.push(`TIMEOUT ${id}`);res();},4000);
+      v.addEventListener('loadedmetadata',()=>{clearTimeout(t);out.push(`OK ${id} (${v.videoWidth}x${v.videoHeight})`);res();});
+      v.addEventListener('error',()=>{clearTimeout(t);out.push(`ERR ${id} code=${v.error&&v.error.code}`);res();});
+    });
+    document.getElementById('o').innerText=out.join('\n');
+  }
+  document.title='DONE';
 })();
 </script></body></html>
