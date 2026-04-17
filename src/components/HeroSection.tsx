@@ -39,6 +39,7 @@ const HeroSection = () => {
           className="absolute inset-0 h-full w-full object-cover"
           style={{ zIndex: 0 }}
         >
+          <source src={VIDEO_SRC_WEBM} type="video/webm" />
           <source src={VIDEO_SRC} type="video/mp4" />
         </motion.video>
       ) : (
