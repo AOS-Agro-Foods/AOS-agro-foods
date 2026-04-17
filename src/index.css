@@ -120,3 +120,10 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Mobile: lighten hero overlay so text remains legible over video */
+@media (max-width: 768px) {
+  .hero-overlay {
+    background: rgba(0, 0, 0, 0.5) !important;
+  }
+}
