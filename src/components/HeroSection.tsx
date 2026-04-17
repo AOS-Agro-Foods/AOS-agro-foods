@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
 
-const VIDEO_SRC = "https://videos.pexels.com/video-files/6580892/6580892-hd_1920_1080_30fps.mp4";
+const VIDEO_SRC = "https://videos.pexels.com/video-files/27202595/27202595-hd_1920_1080_30fps.mp4";
 
 const HeroSection = () => {
   const [showVideo, setShowVideo] = useState(false);
