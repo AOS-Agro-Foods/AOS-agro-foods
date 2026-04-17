@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
 
-const VIDEO_SRC = "https://videos.pexels.com/video-files/27202595/27202595-hd_1920_1080_30fps.mp4";
+// Place your MP4 file at: public/hero.mp4  (it will be served from the site root as /hero.mp4)
+// Optional: also add public/hero.webm for better compression on supported browsers.
+const VIDEO_SRC = "/hero.mp4";
+const VIDEO_SRC_WEBM = "/hero.webm";
 
 const HeroSection = () => {
   const [showVideo, setShowVideo] = useState(false);
