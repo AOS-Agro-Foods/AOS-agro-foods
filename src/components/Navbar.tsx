@@ -36,7 +36,7 @@ const Navbar = () => {
           <img src={logo} alt="AOS Agro Foods" className="h-10 w-10 rounded-lg object-contain" />
           <div>
             <span className={`font-display text-lg font-bold tracking-tight ${scrolled ? "text-foreground" : "text-background"}`}>
-              AOS Agro Foods
+              AOS AGRO FOODS
             </span>
           </div>
         </a>
