@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import heroBg from "@/assets/hero-bg.jpg";
 
 // Place your MP4 file at: public/hero.mp4  (it will be served from the site root as /hero.mp4)
 // Optional: also add public/hero.webm for better compression on supported browsers.
@@ -8,51 +6,26 @@ const VIDEO_SRC = "/hero.mp4";
 const VIDEO_SRC_WEBM = "/hero.webm";
 
 const HeroSection = () => {
-  const [showVideo, setShowVideo] = useState(false);
-
-  useEffect(() => {
-    // Skip video on small screens, slow connections, or reduced-motion preference
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const conn = (navigator as Navigator & {
-      connection?: { saveData?: boolean; effectiveType?: string };
-    }).connection;
-    const slow = conn?.saveData || (conn?.effectiveType && /2g|slow-2g/.test(conn.effectiveType));
-    if (!isMobile && !reduceMotion && !slow) setShowVideo(true);
-  }, []);
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-forest-dark">
-      {/* Background: video on desktop, optimized image on mobile/slow */}
-      {showVideo ? (
-        <motion.video
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.6, ease: "easeOut" }}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster={heroBg}
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ zIndex: 0 }}
-        >
-          <source src={VIDEO_SRC_WEBM} type="video/webm" />
-          <source src={VIDEO_SRC} type="video/mp4" />
-        </motion.video>
-      ) : (
-        <motion.img
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.6, ease: "easeOut" }}
-          src={heroBg}
-          alt="Premium agro exports India — golden wheat fields ready for harvest"
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ zIndex: 0 }}
-        />
-      )}
+      {/* Background: video */}
+      <motion.video
+        initial={{ opacity: 0, scale: 1.05 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.6, ease: "easeOut" }}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ zIndex: 0 }}
+      >
+        <source src={VIDEO_SRC_WEBM} type="video/webm" />
+        <source src={VIDEO_SRC} type="video/mp4" />
+      </motion.video>
 
       {/* Cinematic dark-green gradient overlay for readability */}
       <div
