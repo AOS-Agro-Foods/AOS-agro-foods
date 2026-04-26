@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 // Place your MP4 file at: public/hero.mp4  (it will be served from the site root as /hero.mp4)
@@ -6,11 +7,22 @@ const VIDEO_SRC = "/hero.mp4";
 const VIDEO_SRC_WEBM = "/hero.webm";
 
 const HeroSection = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.addEventListener('canplay', () => {
+        video.play();
+      });
+    }
+  }, []);
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-forest-dark">
       {/* Background: video */}
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
