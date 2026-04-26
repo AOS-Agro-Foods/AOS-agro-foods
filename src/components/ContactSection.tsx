@@ -62,7 +62,7 @@ const ContactSection = () => {
           >
             {[
               { icon: Phone, label: "Phone", value: "+91 9773531529", href: "tel:+919773531529" },
-              { icon: Mail, label: "Email", value: "info@aosagrofoods.com", href: "mailto:info@aosagrofoods.com" },
+              { icon: Mail, label: "Email", value: "contact@aosagrofoods.in", href: "mailto:contact@aosagrofoods.in" },
               { icon: MapPin, label: "Address", value: "GF 2646, Gali Raghunandan, Naya Bazaar, Lahori Gate, Delhi — 110006" },
             ].map((item, i) => (
               <motion.div key={item.label} custom={i} variants={fadeUp} className="flex gap-4">
