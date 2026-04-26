@@ -10,22 +10,19 @@ const HeroSection = () => {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-forest-dark">
       {/* Background: video */}
-      <motion.video
-        initial={{ opacity: 0, scale: 1.05 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.6, ease: "easeOut" }}
+      <video
         autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
         style={{ zIndex: 0 }}
       >
         <source src={VIDEO_SRC_WEBM} type="video/webm" />
         <source src={VIDEO_SRC} type="video/mp4" />
-      </motion.video>
+      </video>
 
       {/* Cinematic dark-green gradient overlay for readability */}
       <div
