@@ -14,7 +14,7 @@ const ContactSection = () => {
     setStatus("loading");
 
     try {
-      const res = await fetch("https://formspree.io/f/xpzgvprk", {
+      const res = await fetch("https://formspree.io/f/xvzdydyn", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({ name, email, message }),
